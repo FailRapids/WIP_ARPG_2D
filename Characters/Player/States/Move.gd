@@ -1,8 +1,14 @@
 extends 'res://Characters/States/Move.gd'
 
+export var MAX_WALK_SPEED = 40
+export var MAX_RUN_SPEED = 80
 
-func handle_input(event):
+func enter():
 	pass
+	
+func handle_input(event):
+	if event.is_action_pressed("Player_Jump"):
+		return JUMP
 
 
 func update(delta):
@@ -27,7 +33,12 @@ func update(delta):
 		return PREVIOUS_STATE
 		
 func move():
-	velocity = MAX_SPEED * move_direction.normalized()
+	if Input.is_action_pressed("Player_Run"):
+		speed = MAX_RUN_SPEED
+	else:
+		speed = MAX_WALK_SPEED
+		
+	velocity = speed * move_direction.normalized()
 	_Enity.move_and_slide(velocity )
 	_update_sprite()
 	var slide_count = _Enity.get_slide_count()

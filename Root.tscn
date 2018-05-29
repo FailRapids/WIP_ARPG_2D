@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Enviroments/Ground/Stone_Ground.tres" type="TileSet" id=1]
 [ext_resource path="res://Enviroments/Wall/Wall.tres" type="TileSet" id=2]
-[ext_resource path="res://Characters/Character.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Characters/Character.tscn" type="PackedScene" id=4]
 
 [node name="Root" type="Node" index="0"]
 _sections_unfolded = [ "Physics" ]
@@ -56,26 +56,29 @@ format = 1
 tile_data = PoolIntArray( -458760, 0, 65537, -458759, 0, 2, -458758, 0, 2, -458757, 0, 65540, -458756, 0, 2, -458755, 0, 65540, -458754, 0, 2, -458753, 0, 65540, -524288, 0, 4, -524287, 0, 4, -524286, 0, 65540, -524285, 0, 4, -524284, 0, 4, -524283, 0, 4, -524282, 0, 2, -524281, 0, 65538, -524272, 0, 65537, -524271, 0, 2, -524270, 0, 4, -524269, 0, 4, -524268, 0, 65540, -524267, 0, 65540, -524266, 0, 2, -524265, 0, 4, -524264, 0, 4, -524263, 0, 2, -524262, 0, 65540, -524261, 0, 65540, -524260, 0, 65540, -524259, 0, 65540, -524258, 0, 2, -524257, 0, 65538, -393224, 0, 131072, -458745, 0, 131072, -458736, 0, 196612, -458721, 0, 196612, -327688, 0, 131076, -393209, 0, 131076, -393200, 0, 196612, -393185, 0, 196612, -262152, 0, 196612, -327673, 0, 131076, -327671, 0, 65537, -327670, 0, 4, -327669, 0, 4, -327668, 0, 4, -327667, 0, 65540, -327666, 0, 65538, -327664, 0, 131076, -327649, 0, 196612, -196616, 0, 131072, -262137, 0, 131072, -262135, 0, 131072, -262130, 0, 131072, -262128, 0, 131076, -262113, 0, 131072, -131080, 0, 131076, -196601, 0, 131072, -196599, 0, 131072, -196594, 0, 131076, -196592, 0, 196612, -196577, 0, 131072, -65544, 0, 131076, -131065, 0, 131073, -131064, 0, 4, -131063, 0, 131074, -131058, 0, 131073, -131057, 0, 2, -131056, 0, 131074, -131041, 0, 131076, -8, 0, 131076, -65505, 0, 131072, 65528, 0, 196612, 31, 0, 131072, 131064, 0, 196612, 65543, 0, 65537, 65544, 0, 65540, 65545, 0, 65538, 65550, 0, 65537, 65551, 0, 4, 65552, 0, 65538, 65567, 0, 196612, 196600, 0, 196612, 131079, 0, 131076, 131081, 0, 131076, 131086, 0, 196612, 131088, 0, 131072, 131103, 0, 196612, 262136, 0, 131076, 196615, 0, 131072, 196617, 0, 131076, 196622, 0, 196612, 196624, 0, 131072, 196639, 0, 131076, 327672, 0, 196612, 262151, 0, 196612, 262153, 0, 131073, 262154, 0, 2, 262155, 0, 65540, 262156, 0, 2, 262157, 0, 2, 262158, 0, 131074, 262160, 0, 131072, 262175, 0, 131076, 393208, 0, 131076, 327687, 0, 131076, 327696, 0, 196612, 327711, 0, 131072, 458744, 0, 196612, 393223, 0, 131076, 393232, 0, 196612, 393247, 0, 196612, 524280, 0, 131073, 524281, 0, 65540, 524282, 0, 2, 524283, 0, 65540, 524284, 0, 2, 524285, 0, 65540, 524286, 0, 65540, 524287, 0, 2, 458752, 0, 2, 458753, 0, 2, 458754, 0, 4, 458755, 0, 4, 458756, 0, 2, 458757, 0, 65540, 458758, 0, 4, 458759, 0, 131074, 458768, 0, 131073, 458769, 0, 4, 458770, 0, 2, 458771, 0, 2, 458772, 0, 4, 458773, 0, 4, 458774, 0, 2, 458775, 0, 4, 458776, 0, 4, 458777, 0, 2, 458778, 0, 65540, 458779, 0, 4, 458780, 0, 65540, 458781, 0, 4, 458782, 0, 2, 458783, 0, 131074 )
 _sections_unfolded = [ "Cell" ]
 
-[node name="Character" parent="Level/Ground" index="1" groups=[
+[node name="YSort" type="YSort" parent="Level/Ground/Walls" index="0"]
+sort_enabled = true
+
+[node name="Player" parent="Level/Ground/Walls/YSort" index="0" instance=ExtResource( 3 )]
+position = Vector2( 0, -40 )
+
+[node name="Character" parent="Level/Ground/Walls/YSort" index="1" groups=[
 "env",
-] instance=ExtResource( 3 )]
+] instance=ExtResource( 4 )]
 position = Vector2( 0, -104 )
 
-[node name="Character2" parent="Level/Ground" index="2" groups=[
+[node name="Character2" parent="Level/Ground/Walls/YSort" index="2" groups=[
 "env",
-] instance=ExtResource( 3 )]
+] instance=ExtResource( 4 )]
 position = Vector2( 96, 0 )
 
-[node name="Character3" parent="Level/Ground" index="3" groups=[
+[node name="Character3" parent="Level/Ground/Walls/YSort" index="3" groups=[
 "env",
-] instance=ExtResource( 3 )]
+] instance=ExtResource( 4 )]
 position = Vector2( 0, 96 )
 
-[node name="Character4" parent="Level/Ground" index="4" groups=[
+[node name="Character4" parent="Level/Ground/Walls/YSort" index="4" groups=[
 "env",
-] instance=ExtResource( 3 )]
+] instance=ExtResource( 4 )]
 position = Vector2( -96, 0 )
-
-[node name="Player" parent="Level/Ground" index="5" instance=ExtResource( 4 )]
-position = Vector2( 0, -40 )
 

@@ -136,8 +136,6 @@ func jump(delta):
 	else:
 		air_speed -= AIR_DECCELERATION * delta
 	air_speed = clamp(air_speed, 0, max_air_speed)
-	emit_signal('speed_updated', air_speed)
-
 	var target_velocity = air_speed * input_direction.normalized()
 	var steering_velocity = (target_velocity - air_velocity).normalized() * AIR_STEERING_POWER
 	air_velocity += steering_velocity

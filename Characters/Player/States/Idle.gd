@@ -4,11 +4,6 @@ extends "res://Characters/States/Idle.gd"
 
 
 func update(delta):
-	pass
-
-	
-func handle_input(event):
-	
 	var input_direction = Vector2()
 	if Input.is_action_pressed("Player_Up"):
 		input_direction.y = -1
@@ -22,3 +17,9 @@ func handle_input(event):
 		
 	if input_direction != Vector2():
 		return MOVE
+
+	
+func handle_input(event):
+	if event.is_action_pressed("Player_Jump"):
+		return JUMP
+	

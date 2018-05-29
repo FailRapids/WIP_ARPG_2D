@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Characters/Character.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Animations/Idle.tres" type="Animation" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://Characters/States/Idle.gd" type="Script" id=6]
 [ext_resource path="res://Characters/States/Move.gd" type="Script" id=7]
 [ext_resource path="res://Characters/States/Bump.gd" type="Script" id=8]
-
+[ext_resource path="res://Characters/States/Jump.gd" type="Script" id=9]
 
 [node name="Character" type="KinematicBody2D" index="0"]
 input_pickable = false
@@ -68,4 +68,7 @@ script = ExtResource( 8 )
 BUMP_DISTANCE = 20
 BUMP_DURATION = 0.2
 MAX_BUMP_HEIGHT = 5
+
+[node name="Jump" type="Node" parent="States" index="3"]
+script = ExtResource( 9 )
 

@@ -3,10 +3,12 @@ extends KinematicBody2D
 var states = []
 
 enum STATE_IDS {NULL, PREVIOUS_STATE, IDLE, MOVE, BUMP, JUMP,}
+
 onready var States = {
 	IDLE: $'States/Idle',
 	MOVE: $'States/Move',
 	BUMP: $'States/Bump',
+	JUMP: $'States/Jump'
 }
 
 var look_direction = Vector2()
