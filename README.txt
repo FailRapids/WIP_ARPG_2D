@@ -1,0 +1,17 @@
+WIP_TOP_DOWN
+*TOP-DOWN
+*ARPG?
+Layout
+	Characters/	
+		Character.tscn
+		Character.gd
+		States/
+			_State.gd
+				""
+			...
+		Animations/
+			...
+		Player/
+			*.gd
+			*.tscn
+			States
