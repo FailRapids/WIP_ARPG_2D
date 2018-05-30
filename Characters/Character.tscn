@@ -54,7 +54,6 @@ polygon = PoolVector2Array( 5, 4, -5, 4, -5, -2, 5, -2 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="States" type="Node" parent="." index="4"]
-editor/display_folded = true
 
 [node name="Idle" type="Node" parent="States" index="0"]
 script = ExtResource( 6 )
@@ -71,11 +70,11 @@ MAX_BUMP_HEIGHT = 5
 
 [node name="Jump" type="Node" parent="States" index="3"]
 script = ExtResource( 9 )
-JUMP_DURATION = 0.5
+JUMP_DURATION = 0.2
 MAX_JUMP_HEIGHT = 6
 AIR_ACCELERATION = 20
 AIR_DECCELERATION = 5
-AIR_STEERING_POWER = 100
+AIR_STEERING_POWER = 20
 
 [node name="Attack" type="Node" parent="States" index="4"]
 

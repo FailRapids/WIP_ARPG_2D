@@ -1,7 +1,8 @@
 extends "res://Characters/Player/States/_State.gd"
 
 
-
+func enter():
+	_AnimationPlayer.play("Idle")
 
 func update(delta):
 	var input_direction = Vector2()

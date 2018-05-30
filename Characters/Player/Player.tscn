@@ -302,18 +302,20 @@ frame = 3
 region_rect = Rect2( 0, 288, 192, 48 )
 
 [node name="Name" type="Position2D" parent="BodyPivot/Body" index="0"]
-visible = false
+show_behind_parent = true
 script = ExtResource( 7 )
+_sections_unfolded = [ "Visibility", "Z Index" ]
 
 [node name="Label" type="Label" parent="BodyPivot/Body/Name" index="0"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -10.0
-margin_top = -24.0
-margin_right = 29.0
-margin_bottom = 7.0
+margin_left = 18.0
+margin_top = -7.0
+margin_right = 57.0
+margin_bottom = 24.0
+rect_scale = Vector2( 0.5, 0.5 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -333,6 +335,7 @@ polygon = PoolVector2Array( 4, 4, -3, 4, -3, 1, 4, 1 )
 
 [node name="States" parent="." index="4"]
 pause_mode = 1
+editor/display_folded = false
 
 [node name="Idle" parent="States" index="0"]
 script = ExtResource( 8 )
@@ -349,7 +352,9 @@ BUMP_DISTANCE = 25
 
 [node name="Jump" parent="States" index="3"]
 script = ExtResource( 11 )
-AIR_ACCELERATION = 13
+JUMP_DURATION = 0.2
+AIR_ACCELERATION = 15
+AIR_DECCELERATION = 15
 AIR_STEERING_POWER = 2
 
 [node name="Attack" parent="States" index="4"]

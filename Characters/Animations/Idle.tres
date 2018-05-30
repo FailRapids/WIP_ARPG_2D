@@ -4,7 +4,7 @@
 
 resource_name = "idle"
 length = 0.7
-loop = false
+loop = true
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Body:frame")

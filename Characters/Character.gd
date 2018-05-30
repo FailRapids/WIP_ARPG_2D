@@ -46,8 +46,7 @@ func go_to_state(new_state):
 	match new_state:
 		PREVIOUS_STATE:
 			states.pop_front()
-		IDLE:
-			states.push_back(States[new_state])
+	
 		ATTACK:
 			print("Entering %s"%States[new_state].name)
 			states.push_front(States[new_state])
@@ -59,7 +58,7 @@ func go_to_state(new_state):
 		_:
 			states[0] = States[new_state]
 	
-#	emit_signal("state_changed",states)
+	emit_signal("state_changed",self.states)
 	states[0].enter()
 
 

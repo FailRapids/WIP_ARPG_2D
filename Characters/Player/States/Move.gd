@@ -24,12 +24,14 @@ func enter():
 	
 func handle_input(event):
 	if event.is_action_pressed("Player_Jump"):
+		_Enity.look_direction = _Enity.move_direction
+	
 		return JUMP
 	if event.is_action_pressed("Player_Attack"):
 		return ATTACK
 
 func exit():
-	_AnimationPlayer.stop()
+	pass
 	
 func update(delta):
 			# Movement
@@ -43,7 +45,6 @@ func update(delta):
 		_Enity.move_direction.x = -1
 	elif Input.is_action_pressed("Player_Right"):
 		_Enity.move_direction.x = 1
-	
 	var hit = move()
 	
 	if hit:
