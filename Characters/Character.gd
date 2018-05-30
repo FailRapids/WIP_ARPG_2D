@@ -2,18 +2,21 @@ extends KinematicBody2D
 
 var states = []
 
-enum STATE_IDS {NULL, PREVIOUS_STATE, IDLE, MOVE, BUMP, JUMP,}
-
+enum STATE_IDS {NULL, PREVIOUS_STATE, IDLE, MOVE, BUMP, JUMP, ATTACK}
+signal state_changed(STATE_ID)
 onready var States = {
 	IDLE: $'States/Idle',
 	MOVE: $'States/Move',
 	BUMP: $'States/Bump',
-	JUMP: $'States/Jump'
+	JUMP: $'States/Jump',
+	ATTACK: $'States/Attack'
 }
 
 var look_direction = Vector2()
-
-
+var height = 0.0 setget set_height
+var velocity = Vector2()
+var move_direction = Vector2()
+var speed = 0
 func _ready():
 	states.push_front(States[IDLE])
 	states[0].enter()
@@ -43,21 +46,28 @@ func go_to_state(new_state):
 	match new_state:
 		PREVIOUS_STATE:
 			states.pop_front()
+		IDLE:
+			states.push_back(States[new_state])
+		ATTACK:
+			print("Entering %s"%States[new_state].name)
+			states.push_front(States[new_state])
 		BUMP,JUMP:
 			states.push_front(States[new_state])
 		MOVE:
 			states.push_front(States[new_state])
+		
 		_:
 			states[0] = States[new_state]
-			
+	
+#	emit_signal("state_changed",states)
 	states[0].enter()
 
 
-func _on_animation_finished( name ):
+func _on_animation_finished( Anim ):
 	if not states[0].has_method('_on_animation_finished'):
 		return
-
-	var new_state = states[0]._on_animation_finished(name)
+	print("Animation_finished %s"%states[0].name)
+	var new_state = states[0]._on_animation_finished(Anim)
 	if new_state:
 		go_to_state(new_state)
 
@@ -70,5 +80,8 @@ func _on_tween_finished(object,key):
 
 	
 	
+func set_height(value):
+	height = value
+	$BodyPivot.position.y = -value
 
 

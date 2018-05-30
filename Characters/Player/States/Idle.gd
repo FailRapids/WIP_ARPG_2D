@@ -1,4 +1,4 @@
-extends "res://Characters/States/Idle.gd"
+extends "res://Characters/Player/States/_State.gd"
 
 
 
@@ -22,4 +22,5 @@ func update(delta):
 func handle_input(event):
 	if event.is_action_pressed("Player_Jump"):
 		return JUMP
-	
+	if event.is_action_pressed("Player_Attack"):
+		return ATTACK

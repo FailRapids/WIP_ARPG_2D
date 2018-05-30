@@ -1,45 +1,65 @@
-extends 'res://Characters/States/Move.gd'
+extends 'res://Characters/Player/States/_State.gd'
 
 export var MAX_WALK_SPEED = 40
 export var MAX_RUN_SPEED = 80
+enum DIRECTIONS {UP,DOWN,LEFT,RIGHT}
+var WALK_ANIMATIONS = {
+						UP:'Walk_Up',
+						DOWN:'Walk_Down',
+						LEFT:'Walk_Left',
+						RIGHT:'Walk_Right'
+					}
+
 
 func enter():
-	pass
+	if _Enity.look_direction.y == -1:
+		_AnimationPlayer.play(WALK_ANIMATIONS[UP])
+	elif _Enity.look_direction.y == 1:
+		_AnimationPlayer.play(WALK_ANIMATIONS[DOWN])
+	elif _Enity.look_direction.x == -1:
+		_AnimationPlayer.play(WALK_ANIMATIONS[LEFT])
+	elif _Enity.look_direction.x == 1:
+		_AnimationPlayer.play(WALK_ANIMATIONS[RIGHT])
+
 	
 func handle_input(event):
 	if event.is_action_pressed("Player_Jump"):
 		return JUMP
+	if event.is_action_pressed("Player_Attack"):
+		return ATTACK
 
-
+func exit():
+	_AnimationPlayer.stop()
+	
 func update(delta):
 			# Movement
-	move_direction = Vector2()
+	_Enity.move_direction = Vector2()
 
 	if Input.is_action_pressed("Player_Up"):
-		move_direction.y = -1
+		_Enity.move_direction.y = -1
 	elif Input.is_action_pressed("Player_Down"):
-		move_direction.y = 1	
+		_Enity.move_direction.y = 1	
 	if Input.is_action_pressed("Player_Left"):
-		move_direction.x = -1
+		_Enity.move_direction.x = -1
 	elif Input.is_action_pressed("Player_Right"):
-		move_direction.x = 1
+		_Enity.move_direction.x = 1
 	
 	var hit = move()
 	
 	if hit:
 		return BUMP
 		
-	if move_direction == Vector2():
+	if _Enity.move_direction == Vector2():
 		return PREVIOUS_STATE
 		
 func move():
 	if Input.is_action_pressed("Player_Run"):
-		speed = MAX_RUN_SPEED
+		_Enity.speed = MAX_RUN_SPEED
 	else:
-		speed = MAX_WALK_SPEED
+		_Enity.speed = MAX_WALK_SPEED
 		
-	velocity = speed * move_direction.normalized()
-	_Enity.move_and_slide(velocity )
+	_Enity.velocity = _Enity.speed * _Enity.move_direction.normalized()
+	_Enity.move_and_slide(_Enity.velocity )
 	_update_sprite()
 	var slide_count = _Enity.get_slide_count()
 	var collision =  _Enity.get_slide_collision(slide_count - 1) if slide_count else null
@@ -50,15 +70,15 @@ func move():
 				return BUMP
 	
 func _update_sprite():
-	if move_direction != Vector2():
-		if _Enity.look_direction != move_direction:
-			_Enity.look_direction = move_direction
-			if move_direction.y == -1:
+	if _Enity.move_direction != Vector2():
+		if _Enity.look_direction != _Enity.move_direction:
+			_Enity.look_direction = _Enity.move_direction
+			if _Enity.move_direction.y == -1:
 				_AnimationPlayer.play(WALK_ANIMATIONS[UP])
-			elif move_direction.y == 1:
+			elif _Enity.move_direction.y == 1:
 				_AnimationPlayer.play(WALK_ANIMATIONS[DOWN])
-			if move_direction.x == -1:
+			if _Enity.move_direction.x == -1:
 				_AnimationPlayer.play(WALK_ANIMATIONS[LEFT])
-			elif move_direction.x == 1:
+			elif _Enity.move_direction.x == 1:
 				_AnimationPlayer.play(WALK_ANIMATIONS[RIGHT])
 		

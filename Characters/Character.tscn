@@ -43,10 +43,9 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 [node name="Body" type="Sprite" parent="BodyPivot" index="0"]
 texture = ExtResource( 5 )
 offset = Vector2( 0, -3 )
-hframes = 4
-frame = 1
+hframes = 3
 region_enabled = true
-region_rect = Rect2( 0, 96, 192, 48 )
+region_rect = Rect2( 0, 0, 144, 48 )
 _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3"]
@@ -55,6 +54,7 @@ polygon = PoolVector2Array( 5, 4, -5, 4, -5, -2, 5, -2 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="States" type="Node" parent="." index="4"]
+editor/display_folded = true
 
 [node name="Idle" type="Node" parent="States" index="0"]
 script = ExtResource( 6 )
@@ -71,4 +71,11 @@ MAX_BUMP_HEIGHT = 5
 
 [node name="Jump" type="Node" parent="States" index="3"]
 script = ExtResource( 9 )
+JUMP_DURATION = 0.5
+MAX_JUMP_HEIGHT = 6
+AIR_ACCELERATION = 20
+AIR_DECCELERATION = 5
+AIR_STEERING_POWER = 100
+
+[node name="Attack" type="Node" parent="States" index="4"]
 
