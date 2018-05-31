@@ -8,7 +8,7 @@
 [ext_resource path="res://Characters/Player/Player.png" type="Texture" id=6]
 [ext_resource path="res://Characters/Player/Name.gd" type="Script" id=7]
 [ext_resource path="res://Characters/Player/States/Idle.gd" type="Script" id=8]
-[ext_resource path="res://Characters/Player/States/Move.gd" type="Script" id=9]
+[ext_resource path="res://Characters/Player/States/Steered_Move.gd" type="Script" id=9]
 [ext_resource path="res://Characters/Player/States/Bump.gd" type="Script" id=10]
 [ext_resource path="res://Characters/Player/States/Jump.gd" type="Script" id=11]
 [ext_resource path="res://Characters/Player/States/Attack.gd" type="Script" id=12]
@@ -335,15 +335,16 @@ polygon = PoolVector2Array( 4, 4, -3, 4, -3, 1, 4, 1 )
 
 [node name="States" parent="." index="4"]
 pause_mode = 1
-editor/display_folded = false
 
 [node name="Idle" parent="States" index="0"]
 script = ExtResource( 8 )
 
 [node name="Move" parent="States" index="1"]
 script = ExtResource( 9 )
-MAX_WALK_SPEED = 50
+MAX_WALK_SPEED = 40
 MAX_RUN_SPEED = 80
+WALK_MASS = 10.0
+RUN_MASS = 3.0
 
 [node name="Bump" parent="States" index="2"]
 script = ExtResource( 10 )
@@ -352,10 +353,10 @@ BUMP_DISTANCE = 25
 
 [node name="Jump" parent="States" index="3"]
 script = ExtResource( 11 )
-JUMP_DURATION = 0.2
-AIR_ACCELERATION = 15
+JUMP_DURATION = 0.75
+MAX_JUMP_HEIGHT = 8
 AIR_DECCELERATION = 15
-AIR_STEERING_POWER = 2
+AIR_STEERING_POWER = 50
 
 [node name="Attack" parent="States" index="4"]
 script = ExtResource( 12 )
