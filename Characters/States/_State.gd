@@ -1,6 +1,6 @@
 extends Node
 
-enum STATE_IDS {NULL, PREVIOUS_STATE, IDLE, MOVE, BUMP, JUMP}
+enum STATE_IDS {NULL, PREVIOUS_STATE, IDLE, MOVE, BUMP, JUMP, ATTACK}
 
 onready var _Enity = $"../.."
 onready var _AnimationPlayer = $"../..".get_node("AnimationPlayer")

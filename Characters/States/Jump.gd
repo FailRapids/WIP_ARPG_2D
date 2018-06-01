@@ -44,7 +44,6 @@ func jump(delta):
 	air_speed = clamp(air_speed, 0, max_air_speed)
 
 	var target_velocity = air_speed * _Enity.get_look_direction()
-	print("Move:%s"%_Enity.look_direction)
 	var steering_velocity = (target_velocity - air_velocity).normalized() * AIR_STEERING_POWER
 	air_velocity += steering_velocity
 	

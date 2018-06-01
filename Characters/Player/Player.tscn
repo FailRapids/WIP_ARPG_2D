@@ -8,7 +8,7 @@
 [ext_resource path="res://Characters/Player/Player.png" type="Texture" id=6]
 [ext_resource path="res://Characters/Player/Name.gd" type="Script" id=7]
 [ext_resource path="res://Characters/Player/States/Idle.gd" type="Script" id=8]
-[ext_resource path="res://Characters/Player/States/Steered_Move.gd" type="Script" id=9]
+[ext_resource path="res://Characters/Player/States/Move.gd" type="Script" id=9]
 [ext_resource path="res://Characters/Player/States/Bump.gd" type="Script" id=10]
 [ext_resource path="res://Characters/Player/States/Jump.gd" type="Script" id=11]
 [ext_resource path="res://Characters/Player/States/Attack.gd" type="Script" id=12]
@@ -299,7 +299,7 @@ texture = ExtResource( 6 )
 flip_h = true
 hframes = 4
 frame = 3
-region_rect = Rect2( 0, 288, 192, 48 )
+region_rect = Rect2( 0, 96, 192, 48 )
 
 [node name="Name" type="Position2D" parent="BodyPivot/Body" index="0"]
 show_behind_parent = true
@@ -341,10 +341,9 @@ script = ExtResource( 8 )
 
 [node name="Move" parent="States" index="1"]
 script = ExtResource( 9 )
+_sections_unfolded = [ "script" ]
 MAX_WALK_SPEED = 40
 MAX_RUN_SPEED = 80
-WALK_MASS = 10.0
-RUN_MASS = 3.0
 
 [node name="Bump" parent="States" index="2"]
 script = ExtResource( 10 )

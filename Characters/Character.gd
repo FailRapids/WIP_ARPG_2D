@@ -12,11 +12,14 @@ onready var States = {
 	ATTACK: $'States/Attack'
 }
 
-var look_direction = Vector2()
+var look_direction = Vector2() setget ,get_look_direction
+var move_direction = Vector2() setget ,get_move_direction
+
 var height = 0.0 setget set_height
 var velocity = Vector2()
-var move_direction = Vector2()
+
 var speed = 0
+
 func _ready():
 	states.push_front(States[IDLE])
 	states[0].enter()
@@ -28,33 +31,20 @@ func _physics_process(delta):
 	var new_state = states[0].update(delta)
 	if new_state:
 		go_to_state(new_state)
-	
-
-
-func _input(event):
-	if not states[0].has_method('handle_input'):
-		return
-	
-	var new_state = states[0].handle_input(event)
-	if new_state:
-		go_to_state(new_state)
-
-
 
 func go_to_state(new_state):
 	states[0].exit()
 	match new_state:
 		PREVIOUS_STATE:
 			states.pop_front()
-	
 		ATTACK:
-			print("Entering %s"%States[new_state].name)
 			states.push_front(States[new_state])
 		BUMP,JUMP:
 			states.push_front(States[new_state])
 		MOVE:
 			states.push_front(States[new_state])
-		
+		IDLE:
+			states.push_front(States[new_state])
 		_:
 			states[0] = States[new_state]
 	
@@ -65,7 +55,6 @@ func go_to_state(new_state):
 func _on_animation_finished( Anim ):
 	if not states[0].has_method('_on_animation_finished'):
 		return
-	print("Animation_finished %s"%states[0].name)
 	var new_state = states[0]._on_animation_finished(Anim)
 	if new_state:
 		go_to_state(new_state)
@@ -77,7 +66,24 @@ func _on_tween_finished(object,key):
 	if new_state:
 		go_to_state(new_state)
 
+func get_look_direction():
+	var last = look_direction
+	look_direction = Vector2()
 	
+	if look_direction != Vector2():
+		return look_direction
+	else:
+		return last
+	
+func get_move_direction():
+	var last = move_direction
+	move_direction = Vector2()
+
+	if move_direction != Vector2():
+		return move_direction
+	else:
+		return last
+		
 	
 func set_height(value):
 	height = value

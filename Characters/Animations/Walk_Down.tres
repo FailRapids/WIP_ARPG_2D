@@ -3,7 +3,7 @@
 [resource]
 
 length = 0.4
-loop = true
+loop = false
 step = 0.1
 tracks/0/type = "method"
 tracks/0/path = NodePath("States/Move")
@@ -12,11 +12,11 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.3 ),
+"times": PoolRealArray( 0.2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "update"
+"method": "_update_sprite"
 } ]
 }
 tracks/1/type = "value"
