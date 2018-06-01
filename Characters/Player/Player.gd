@@ -25,10 +25,10 @@ func get_look_direction():
 	elif Input.is_action_pressed(INPUT_MAP[RIGHT]):
 		look_direction.x = 1
 	
-	if look_direction != Vector2():
-		return look_direction
-	else:
-		return last
+	if look_direction != Vector2():return look_direction
+	else:look_direction = last
+	
+	return last
 	
 func get_move_direction():
 	var last = move_direction
@@ -43,8 +43,6 @@ func get_move_direction():
 	elif Input.is_action_pressed(INPUT_MAP[RIGHT]):
 		move_direction.x = 1
 	
-	if move_direction != Vector2():
-		return move_direction
-	else:
-		return last
+	if move_direction != Vector2():return move_direction
+	else:return last
 		

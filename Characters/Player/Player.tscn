@@ -342,8 +342,7 @@ script = ExtResource( 8 )
 [node name="Move" parent="States" index="1"]
 script = ExtResource( 9 )
 _sections_unfolded = [ "script" ]
-MAX_WALK_SPEED = 40
-MAX_RUN_SPEED = 80
+_move_type = true
 
 [node name="Bump" parent="States" index="2"]
 script = ExtResource( 10 )
@@ -353,9 +352,7 @@ BUMP_DISTANCE = 25
 [node name="Jump" parent="States" index="3"]
 script = ExtResource( 11 )
 JUMP_DURATION = 0.75
-MAX_JUMP_HEIGHT = 8
-AIR_DECCELERATION = 15
-AIR_STEERING_POWER = 50
+MAX_JUMP_HEIGHT = 10
 
 [node name="Attack" parent="States" index="4"]
 script = ExtResource( 12 )
@@ -370,9 +367,9 @@ limit_top = -10000000
 limit_right = 10000000
 limit_bottom = 10000000
 limit_smoothed = false
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = false
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
 smoothing_speed = 5.0
 offset_v = 0.0
 offset_h = 0.0
@@ -383,5 +380,6 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
+_sections_unfolded = [ "Drag Margin", "Smoothing" ]
 
 [connection signal="state_changed" from="." to="BodyPivot/Body/Name" method="_on_Player_state_changed"]

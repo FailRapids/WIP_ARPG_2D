@@ -48,7 +48,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 144, 48 )
 _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3"]
+[node name="Env" type="CollisionPolygon2D" parent="." index="3"]
 build_mode = 0
 polygon = PoolVector2Array( 5, 4, -5, 4, -5, -2, 5, -2 )
 _sections_unfolded = [ "Transform" ]
@@ -60,22 +60,27 @@ script = ExtResource( 6 )
 
 [node name="Move" type="Node" parent="States" index="1"]
 script = ExtResource( 7 )
-MAX_WALK_SPEED = 40
-MAX_RUN_SPEED = 80
+_move_type = null
+MAX_WALK_SPEED = 35
+MAX_RUN_SPEED = 60
+WALK_MASS = 20.0
+RUN_MASS = 15.0
+STRENGTH = 2
 
 [node name="Bump" type="Node" parent="States" index="2"]
 script = ExtResource( 8 )
-BUMP_DISTANCE = 20
-BUMP_DURATION = 0.2
+BUMP_DISTANCE = 15
+BUMP_DURATION = 0.5
 MAX_BUMP_HEIGHT = 5
 
 [node name="Jump" type="Node" parent="States" index="3"]
 script = ExtResource( 9 )
-JUMP_DURATION = 0.2
-MAX_JUMP_HEIGHT = 6
-AIR_ACCELERATION = 20
-AIR_DECCELERATION = 5
-AIR_STEERING_POWER = 20
+JUMP_DURATION = 0.5
+MAX_JUMP_HEIGHT = 8
+MAX_JUMP_SPEED = 60
+ACCELERATION = 6
+DECCELERATION = 10
+STRENGTH = 25
 
 [node name="Attack" type="Node" parent="States" index="4"]
 

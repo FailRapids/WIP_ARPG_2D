@@ -6,7 +6,7 @@ onready var _Enity = $"../.."
 onready var _AnimationPlayer = $"../..".get_node("AnimationPlayer")
 onready var _Tween = $"../..".get_node("Tween")
 onready var _BodyPivot = $"../..".get_node("BodyPivot")
-
+onready var _EnvCollision = $"../..".get_node("Env")
 
 func enter():
 	pass

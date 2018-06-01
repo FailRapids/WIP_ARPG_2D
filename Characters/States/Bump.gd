@@ -4,7 +4,6 @@ export var BUMP_DISTANCE = 20
 export var BUMP_DURATION = 0.2
 export var MAX_BUMP_HEIGHT = 5
 
-var height = 0 setget set_height
 
 func enter():
 	_Tween.connect('tween_completed', _Enity,'_on_tween_finished')
@@ -19,7 +18,7 @@ func exit():
 	_Tween.disconnect('tween_completed',_Enity,'_on_tween_finished')
 	
 func _animate_height(progress):
-	self.height = pow(sin(progress * PI), 0.4) * MAX_BUMP_HEIGHT
+	_Enity.height = pow(sin(progress * PI), 0.4) * MAX_BUMP_HEIGHT
 
 func _animate_movement(progress):
 	move(progress)
@@ -31,8 +30,7 @@ func _on_tween_finished(object,key):
 		return PREVIOUS_STATE
 		
 func move(value):  
-	return _Enity.move_and_slide(value * 5)
+	print(value)
+	return _Enity.move_and_slide(value*4)
 	
-func set_height(value):
-	height = value
-	_BodyPivot.position.y = -value
+

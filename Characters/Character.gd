@@ -3,7 +3,9 @@ extends KinematicBody2D
 var states = []
 
 enum STATE_IDS {NULL, PREVIOUS_STATE, IDLE, MOVE, BUMP, JUMP, ATTACK}
-signal state_changed(STATE_ID)
+
+signal state_changed
+
 onready var States = {
 	IDLE: $'States/Idle',
 	MOVE: $'States/Move',
@@ -15,13 +17,19 @@ onready var States = {
 var look_direction = Vector2() setget ,get_look_direction
 var move_direction = Vector2() setget ,get_move_direction
 
-var height = 0.0 setget set_height
+
 var velocity = Vector2()
 
+var air_speed = 0
 var speed = 0
+
+var mass = 0
+
+var height = 0.0 setget set_height
 
 func _ready():
 	states.push_front(States[IDLE])
+	states.push_front(States[MOVE])
 	states[0].enter()
 
 
@@ -77,7 +85,7 @@ func get_look_direction():
 	
 func get_move_direction():
 	var last = move_direction
-	move_direction = Vector2()
+	move_direction = Vector2(1,0)
 
 	if move_direction != Vector2():
 		return move_direction
