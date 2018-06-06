@@ -1,363 +1,54 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=2]
-[ext_resource path="res://Characters/Animations/Walk_Left.tres" type="Animation" id=3]
-[ext_resource path="res://Characters/Animations/Walk_Right.tres" type="Animation" id=4]
-[ext_resource path="res://Characters/Animations/Walk_Up.tres" type="Animation" id=5]
-[ext_resource path="res://Characters/Player/Player.png" type="Texture" id=6]
-[ext_resource path="res://Characters/Player/Name.gd" type="Script" id=7]
-[ext_resource path="res://Characters/Player/States/Idle.gd" type="Script" id=8]
-[ext_resource path="res://Characters/Player/States/Move.gd" type="Script" id=9]
-[ext_resource path="res://Characters/Player/States/Bump.gd" type="Script" id=10]
-[ext_resource path="res://Characters/Player/States/Jump.gd" type="Script" id=11]
-[ext_resource path="res://Characters/Player/States/Attack.gd" type="Script" id=12]
-
-[sub_resource type="Animation" id=1]
-
-resource_name = "Attack_Down"
-length = 0.4
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("BodyPivot/Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("BodyPivot/Body:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 0, 240, 192, 48 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("BodyPivot/Body:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 4 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("BodyPivot/Body:vframes")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("BodyPivot/Body:flip_h")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=2]
-
-resource_name = "Attack_Left"
-length = 0.4
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("BodyPivot/Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("BodyPivot/Body:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 0, 288, 192, 48 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("BodyPivot/Body:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 4 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("BodyPivot/Body:vframes")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("BodyPivot/Body:flip_h")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=3]
-
-resource_name = "Attack_Right"
-length = 0.4
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("BodyPivot/Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("BodyPivot/Body:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 0, 288, 192, 48 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("BodyPivot/Body:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 4 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("BodyPivot/Body:vframes")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("BodyPivot/Body:flip_h")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=4]
-
-resource_name = "Attack_Up"
-length = 0.4
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("BodyPivot/Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("BodyPivot/Body:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 0, 336, 192, 48 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("BodyPivot/Body:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 4 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("BodyPivot/Body:vframes")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("BodyPivot/Body:flip_h")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
+[ext_resource path="res://Characters/Player/States/Idle.gd" type="Script" id=3]
+[ext_resource path="res://Characters/Player/States/Move.gd" type="Script" id=4]
+[ext_resource path="res://Characters/Player/States/Bump.gd" type="Script" id=5]
+[ext_resource path="res://Characters/Player/States/Jump.gd" type="Script" id=6]
+[ext_resource path="res://Characters/Player/States/Attack.gd" type="Script" id=7]
 
 [node name="Player" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" parent="." index="0"]
-anims/Attack_Down = SubResource( 1 )
-anims/Attack_Left = SubResource( 2 )
-anims/Attack_Right = SubResource( 3 )
-anims/Attack_Up = SubResource( 4 )
-anims/Walk_Left = ExtResource( 3 )
-anims/Walk_Right = ExtResource( 4 )
-anims/Walk_Up = ExtResource( 5 )
+autoplay = ""
 
-[node name="Body" parent="BodyPivot" index="0"]
-position = Vector2( -1, 0 )
-texture = ExtResource( 6 )
-flip_h = true
-hframes = 4
-frame = 3
-region_rect = Rect2( 0, 96, 192, 48 )
-
-[node name="Name" type="Position2D" parent="BodyPivot/Body" index="0"]
-show_behind_parent = true
-script = ExtResource( 7 )
-_sections_unfolded = [ "Visibility", "Z Index" ]
-
-[node name="Label" type="Label" parent="BodyPivot/Body/Name" index="0"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 18.0
-margin_top = -7.0
-margin_right = 57.0
-margin_bottom = 24.0
-rect_scale = Vector2( 0.5, 0.5 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "SETUP
-"
-align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
-
-[node name="CollisionPolygon2D" parent="." index="3"]
-polygon = PoolVector2Array( 4, 4, -3, 4, -3, 1, 4, 1 )
+[node name="Body" parent="." index="2"]
+position = Vector2( 0, 0.0668694 )
+rotation = -0.113962
 
 [node name="States" parent="." index="4"]
 pause_mode = 1
 
 [node name="Idle" parent="States" index="0"]
-script = ExtResource( 8 )
+script = ExtResource( 3 )
 
 [node name="Move" parent="States" index="1"]
-script = ExtResource( 9 )
+script = ExtResource( 4 )
 _sections_unfolded = [ "script" ]
-_move_type = true
 
 [node name="Bump" parent="States" index="2"]
-script = ExtResource( 10 )
+script = ExtResource( 5 )
 _sections_unfolded = [ "script" ]
-BUMP_DISTANCE = 25
+BUMP_DISTANCE = 20
+BUMP_DURATION = 0.617
+MAX_BUMP_HEIGHT = 4
 
 [node name="Jump" parent="States" index="3"]
-script = ExtResource( 11 )
+script = ExtResource( 6 )
 JUMP_DURATION = 0.75
-MAX_JUMP_HEIGHT = 10
+MAX_JUMP_HEIGHT = 16
+MAX_JUMP_SPEED = 0
+DECCELERATION = 15
+STRENGTH = 20
 
 [node name="Attack" parent="States" index="4"]
-script = ExtResource( 12 )
+script = ExtResource( 7 )
 
-[node name="Camera2D" type="Camera2D" parent="." index="5"]
+[node name="CamRig" type="Position2D" parent="." index="5"]
+
+[node name="Camera2D" type="Camera2D" parent="CamRig" index="0"]
 anchor_mode = 1
 rotating = false
 current = true
@@ -367,19 +58,18 @@ limit_top = -10000000
 limit_right = 10000000
 limit_bottom = 10000000
 limit_smoothed = false
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
-smoothing_enabled = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
 smoothing_speed = 5.0
 offset_v = 0.0
 offset_h = 0.0
 drag_margin_left = 0.2
 drag_margin_top = 0.2
-drag_margin_right = 0.2
+drag_margin_right = 0.6
 drag_margin_bottom = 0.2
 editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
-_sections_unfolded = [ "Drag Margin", "Smoothing" ]
+editor_draw_limits = true
+editor_draw_drag_margin = true
+_sections_unfolded = [ "Drag Margin", "Editor" ]
 
-[connection signal="state_changed" from="." to="BodyPivot/Body/Name" method="_on_Player_state_changed"]

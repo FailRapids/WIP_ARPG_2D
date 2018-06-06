@@ -17,19 +17,20 @@ onready var States = {
 var look_direction = Vector2() setget ,get_look_direction
 var move_direction = Vector2() setget ,get_move_direction
 
-
 var velocity = Vector2()
+var air_velocity = Vector2()
 
-var air_speed = 0
 var speed = 0
+var air_speed = 0
+
+var height = 0.0
 
 var mass = 0
 
-var height = 0.0 setget set_height
+ 
 
 func _ready():
 	states.push_front(States[IDLE])
-	states.push_front(States[MOVE])
 	states[0].enter()
 
 
@@ -41,10 +42,9 @@ func _physics_process(delta):
 		go_to_state(new_state)
 
 func go_to_state(new_state):
-	states[0].exit()
 	match new_state:
 		PREVIOUS_STATE:
-			states.pop_front()
+			states.pop_front().exit()
 		ATTACK:
 			states.push_front(States[new_state])
 		BUMP,JUMP:
@@ -85,16 +85,14 @@ func get_look_direction():
 	
 func get_move_direction():
 	var last = move_direction
-	move_direction = Vector2(1,0)
-
+	move_direction = Vector2()
+	
 	if move_direction != Vector2():
 		return move_direction
 	else:
 		return last
 		
 	
-func set_height(value):
-	height = value
-	$BodyPivot.position.y = -value
+
 
 
