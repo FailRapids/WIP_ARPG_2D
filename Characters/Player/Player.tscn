@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Characters/Player/States/Bump.gd" type="Script" id=5]
 [ext_resource path="res://Characters/Player/States/Jump.gd" type="Script" id=6]
 [ext_resource path="res://Characters/Player/States/Attack.gd" type="Script" id=7]
+[ext_resource path="res://Tools/Camera/CamRig.tscn" type="PackedScene" id=8]
 
 [node name="Player" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -27,6 +28,7 @@ script = ExtResource( 3 )
 [node name="Move" parent="States" index="1"]
 script = ExtResource( 4 )
 _sections_unfolded = [ "script" ]
+DECCELERATION = 100
 
 [node name="Bump" parent="States" index="2"]
 script = ExtResource( 5 )
@@ -40,36 +42,15 @@ script = ExtResource( 6 )
 JUMP_DURATION = 0.75
 MAX_JUMP_HEIGHT = 16
 MAX_JUMP_SPEED = 0
-DECCELERATION = 15
 STRENGTH = 20
 
 [node name="Attack" parent="States" index="4"]
 script = ExtResource( 7 )
 
-[node name="CamRig" type="Position2D" parent="." index="5"]
+[node name="State_Tool" parent="." index="5"]
+visible = true
 
-[node name="Camera2D" type="Camera2D" parent="CamRig" index="0"]
-anchor_mode = 1
-rotating = false
-current = true
-zoom = Vector2( 1, 1 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
-limit_smoothed = false
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = false
-smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.6
-drag_margin_bottom = 0.2
-editor_draw_screen = true
-editor_draw_limits = true
-editor_draw_drag_margin = true
-_sections_unfolded = [ "Drag Margin", "Editor" ]
+[node name="CamRig" parent="." index="6" instance=ExtResource( 8 )]
 
+
+[editable path="CamRig"]

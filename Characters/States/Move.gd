@@ -18,6 +18,7 @@ export(int,1,10) var STRENGTH = 5
 
 
 func enter():
+	self.velocity = Vector2()
 	_AnimationPlayer.play("Walk")
 	
 	
@@ -59,7 +60,7 @@ func move(delta,direction):
 		direction -= direction * delta
 	
 	
-	var steered_velocity = (direction * self.speed) - self.velocity
+	var steered_velocity = (direction * self.speed) - velocity
 	
 	self.velocity += (steered_velocity / self.mass) * STRENGTH
 	_Enity.move_and_slide(self.velocity)

@@ -39,7 +39,6 @@ func _on_tween_finshed(object,key):
 ##MAKE GUI TO VIS NO MORE CONSLOE SPAM
 func get_speed():
 	speed = _Enity.speed
-	print("%s:SPEED:%s"%[_Enity.name,speed])
 	return speed
 	
 
@@ -49,20 +48,19 @@ func set_speed(value):
 	
 func get_air_speed():
 	air_speed = _Enity.air_speed
-	print("%s:AIR_SPEED:%s"%[_Enity.name,air_speed])
 	return air_speed
 
 func set_air_speed(value):
 	air_speed = value
 	_Enity.air_speed = value
-
+	_Enity.speed = value
+	
 func get_velocity():
 	velocity = _Enity.velocity
 	return velocity
 	
 func set_velocity(value):
 	velocity = value
-	print("%s:VELOCITY:%s"%[_Enity.name,velocity])
 	_Enity.velocity = value
 	
 func get_air_velocity():
@@ -72,6 +70,7 @@ func get_air_velocity():
 func set_air_velocity(value):
 	air_velocity = value
 	_Enity.air_velocity = value
+	_Enity.velocity = value
 	
 
 func get_height():
@@ -79,6 +78,8 @@ func get_height():
 	return height
 
 func set_height(value):
+	if value < 0:
+		value = 0
 	height = value
 	_Enity.height = value
 	_BodyPivot.position.y = -value
@@ -88,6 +89,8 @@ func get_mass():
 	return mass
 	
 func set_mass(value):
+	if value < 0:
+		value = 0
 	mass = value
 	_Enity.mass = value
 	

@@ -71,9 +71,16 @@ position = Vector2( -8, -38 )
 ] instance=ExtResource( 4 )]
 position = Vector2( 63, 2 )
 
+[node name="Camera2D" parent="Level/Ground/Walls/YSort/Character/CamRig" index="0"]
+current = false
+
 [node name="Character2" parent="Level/Ground/Walls/YSort" index="2" groups=[
 "env",
 "Env",
 ] instance=ExtResource( 4 )]
 position = Vector2( -89, 0 )
 
+
+[editable path="Level/Ground/Walls/YSort/Character"]
+
+[editable path="Level/Ground/Walls/YSort/Character/CamRig"]
