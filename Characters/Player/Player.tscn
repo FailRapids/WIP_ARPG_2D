@@ -28,29 +28,56 @@ script = ExtResource( 3 )
 [node name="Move" parent="States" index="1"]
 script = ExtResource( 4 )
 _sections_unfolded = [ "script" ]
-DECCELERATION = 100
+DECCELERATION = 120
 
 [node name="Bump" parent="States" index="2"]
 script = ExtResource( 5 )
 _sections_unfolded = [ "script" ]
-BUMP_DISTANCE = 20
-BUMP_DURATION = 0.617
+BUMP_DISTANCE = 30
+BUMP_DURATION = 0.319
 MAX_BUMP_HEIGHT = 4
 
 [node name="Jump" parent="States" index="3"]
 script = ExtResource( 6 )
+ACCELRATION = 35
+DECCELERATION = 60
 JUMP_DURATION = 0.75
 MAX_JUMP_HEIGHT = 16
-MAX_JUMP_SPEED = 0
-STRENGTH = 20
 
 [node name="Attack" parent="States" index="4"]
 script = ExtResource( 7 )
+MAX_SPEED = 60
+ACCELRATION = 35
+DECCELERATION = 60
+STRENGTH = 5
 
-[node name="State_Tool" parent="." index="5"]
+[node name="CamRig" parent="." index="5" instance=ExtResource( 8 )]
+
+[node name="Camera2D" parent="CamRig" index="0"]
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+
+[node name="Position2D" parent="." index="6"]
 visible = true
 
-[node name="CamRig" parent="." index="6" instance=ExtResource( 8 )]
+[node name="Movement_GUI" parent="Position2D" index="0"]
+show_behind_parent = false
+margin_left = -38.0
+margin_bottom = -12.0
+
+[node name="Output" parent="Position2D/Movement_GUI" index="2"]
+margin_left = -19.0
+margin_top = 1.0
+margin_right = 21.0
+margin_bottom = 33.0
+
+[node name="Output2" parent="Position2D/Movement_GUI" index="3"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -18.0
+margin_top = -13.0
+margin_right = 22.0
+margin_bottom = 19.0
 
 
 [editable path="CamRig"]

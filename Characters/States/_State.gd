@@ -1,5 +1,7 @@
 extends Node
 
+signal status_changed(_dict)
+
 enum STATE_IDS {NULL, PREVIOUS_STATE, IDLE, MOVE, BUMP, JUMP, ATTACK}
 
 onready var _Enity = $"../.."
@@ -17,6 +19,14 @@ var air_velocity = Vector2() setget set_air_velocity,get_air_velocity
 var height = 0.0 setget set_height
 
 var mass = 0
+
+
+
+export var MAX_SPEED = 60
+export var ACCELRATION = 35
+export var DECCELERATION = 60
+
+export(int,1,10) var STRENGTH = 5
 
 func enter():
 	pass
@@ -51,9 +61,8 @@ func get_air_speed():
 	return air_speed
 
 func set_air_speed(value):
-	air_speed = value
-	_Enity.air_speed = value
-	_Enity.speed = value
+	air_speed =  clamp(value,0,MAX_SPEED)
+	_Enity.air_speed =  clamp(air_speed,0,MAX_SPEED)
 	
 func get_velocity():
 	velocity = _Enity.velocity
@@ -78,11 +87,9 @@ func get_height():
 	return height
 
 func set_height(value):
-	if value < 0:
-		value = 0
-	height = value
-	_Enity.height = value
-	_BodyPivot.position.y = -value
+	height = clamp(value,0,999)
+	_Enity.height = height
+	_BodyPivot.position.y = -height
 
 func get_mass():
 	mass = _Enity.mass

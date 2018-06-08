@@ -1,29 +1,27 @@
 extends 'res://Characters/States/_State.gd'
 
+
 enum DIRECTIONS {UP,DOWN,LEFT,RIGHT}
 var WALK_ANIMATIONS = {UP:'Walk_Up',DOWN:'Walk_Down',
 						LEFT:'Walk_Left',RIGHT:'Walk_Right'}
 
 export(int,1,40) var MAX_WALK_SPEED = 35
-export(int,30,60) var MAX_RUN_SPEED = 50
 
 export(float) var WALK_MASS = 20.0
 export(float) var RUN_MASS = 15.0
 
-export var ACCELRATION = 35
-export var DECCELERATION = 60
 
-export(int,1,10) var STRENGTH = 5
 
 
 
 func enter():
-	self.velocity = Vector2()
 	_AnimationPlayer.play("Walk")
 	
 	
 func update(delta):
 	var exit_state = move_and_collide(delta)
+	var status = {"Speed":self.speed,"Velocity":self.velocity}
+	emit_signal("status_changed",status)
 	if exit_state:
 		return exit_state
 	
@@ -38,7 +36,7 @@ func debug_move(delta,direction):
 		if speed < MAX_WALK_SPEED:
 			speed = clamp(speed + (ACCELRATION * delta),15,MAX_WALK_SPEED)
 		else:
-			speed = clamp(speed +(ACCELRATION * delta),MAX_WALK_SPEED,MAX_RUN_SPEED)
+			speed = clamp(speed +(ACCELRATION * delta),MAX_WALK_SPEED,MAX_SPEED)
 	else:
 		speed -= DECCELERATION * delta
 		direction -= direction * delta
@@ -52,7 +50,7 @@ func move(delta,direction):
 			self.speed = clamp(self.speed + (ACCELRATION * delta),15,MAX_WALK_SPEED)
 			self.mass  = clamp(self.mass + (10 * delta),15,WALK_MASS)
 		else:
-			self.speed = clamp(self.speed +(ACCELRATION * delta),MAX_WALK_SPEED,MAX_RUN_SPEED)
+			self.speed = clamp(self.speed +(ACCELRATION * delta),MAX_WALK_SPEED,MAX_SPEED)
 			self.mass =  clamp(self.mass + (10 * delta),15,RUN_MASS)
 	else:
 		self.speed -= DECCELERATION * delta

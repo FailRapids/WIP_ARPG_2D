@@ -2,11 +2,7 @@ extends "res://Characters/States/_State.gd"
 
 export var JUMP_DURATION = 0.50
 export var MAX_JUMP_HEIGHT = 8
-export var MAX_JUMP_SPEED = 40
 
-export var DECCELERATION = 60
-
-export var STRENGTH = 5
 
 
 func enter():
@@ -19,7 +15,10 @@ func enter():
 	_Tween.start()
 
 func update(delta):
-	jump(delta,_Enity.look_direction)
+	var direction = _Enity.look_direction
+	jump(delta,direction)
+	var status = {"Speed":self.air_speed,"Velocity":self.air_velocity}
+	emit_signal("status_changed",status)
 
 func exit():
 	_EnvCollision.set_disabled(false)
@@ -27,8 +26,13 @@ func exit():
 	
 	
 func jump(delta,direction):
-	self.air_speed -= DECCELERATION * delta
-	self.air_velocity = speed * direction 
+	if _Enity.move_direction != Vector2():
+		self.air_speed = clamp(self.air_speed + (ACCELRATION * delta),15,MAX_SPEED)
+	else:
+		self.air_speed -= DECCELERATION * delta
+	
+	var steered_velocity = (direction * self.air_speed) - self.air_velocity
+	self.air_velocity += (steered_velocity / 5) * STRENGTH
 	_Enity.move_and_slide(self.air_velocity)
 	
 

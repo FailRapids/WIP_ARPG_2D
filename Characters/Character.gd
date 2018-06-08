@@ -6,6 +6,7 @@ enum STATE_IDS {NULL, PREVIOUS_STATE, IDLE, MOVE, BUMP, JUMP, ATTACK}
 
 signal state_changed
 
+
 onready var States = {
 	IDLE: $'States/Idle',
 	MOVE: $'States/Move',
@@ -20,8 +21,8 @@ var move_direction = Vector2() setget ,get_move_direction
 var velocity = Vector2()
 var air_velocity = Vector2()
 
-var speed = 0
-var air_speed = 0
+var speed = 0 setget set_speed
+var air_speed = 0 setget set_air_speed
 
 var height = 0.0
 
@@ -93,6 +94,11 @@ func get_move_direction():
 		return last
 		
 	
-
+func set_speed(value):
+	speed = value
+	
+func set_air_speed(value):
+	air_speed = value
+	speed = value
 
 
