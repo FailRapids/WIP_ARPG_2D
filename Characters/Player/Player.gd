@@ -1,6 +1,7 @@
 extends "res://Characters/Character.gd"
 #Player.gd
 
+
 enum INPUTS {UP,DOWN,LEFT,RIGHT,SPRINT,ATTACK,JUMP}
 var INPUT_MAP = {UP:"Player_Up",DOWN:"Player_Down",LEFT:"Player_Left",RIGHT:"Player_Right",
 				SPRINT:"Player_Run",ATTACK:"Player_Attack",JUMP:"Player_Jump"}
@@ -20,15 +21,20 @@ func get_look_direction():
 		look_direction.y = -1
 	elif Input.is_action_pressed(INPUT_MAP[DOWN]):
 		look_direction.y = 1
+	
 	if Input.is_action_pressed(INPUT_MAP[LEFT]):
 		look_direction.x = -1
+		$Body.flip_h = true
 	elif Input.is_action_pressed(INPUT_MAP[RIGHT]):
 		look_direction.x = 1
-	
-	if look_direction != Vector2():return look_direction
-	else:look_direction = last
-	
-	return last
+		$Body.flip_h = false
+		
+	if look_direction != Vector2():
+		emit_signal("direction_changed",look_direction)
+		return look_direction
+	else:
+		look_direction = last
+		return last
 	
 func get_move_direction():
 	var last = move_direction
@@ -38,11 +44,17 @@ func get_move_direction():
 		move_direction.y = -1
 	elif Input.is_action_pressed(INPUT_MAP[DOWN]):
 		move_direction.y = 1
+	
 	if Input.is_action_pressed(INPUT_MAP[LEFT]):
 		move_direction.x = -1
+		$Body.flip_h = true
 	elif Input.is_action_pressed(INPUT_MAP[RIGHT]):
 		move_direction.x = 1
+		$Body.flip_h = false
 	
-	if move_direction != Vector2():return move_direction
-	else:return last
+	if move_direction != Vector2():
+		emit_signal("direction_changed",move_direction)
+		return move_direction
+	else:
+		return last
 		

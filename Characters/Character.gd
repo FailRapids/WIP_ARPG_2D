@@ -5,7 +5,7 @@ var states = []
 enum STATE_IDS {NULL, PREVIOUS_STATE, IDLE, MOVE, BUMP, JUMP, ATTACK}
 
 signal state_changed
-
+signal direction_changed
 
 onready var States = {
 	IDLE: $'States/Idle',

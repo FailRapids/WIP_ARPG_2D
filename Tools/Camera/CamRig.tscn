@@ -1,19 +1,19 @@
 [gd_scene format=2]
 
-[node name="CamRig" type="Position2D"]
+[node name="CamRig" type="Position2D" index="0"]
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
 anchor_mode = 1
 rotating = false
-current = true
+current = false
 zoom = Vector2( 1, 1 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000
 limit_bottom = 10000000
 limit_smoothed = false
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
 smoothing_enabled = false
 smoothing_speed = 5.0
 offset_v = 0.0

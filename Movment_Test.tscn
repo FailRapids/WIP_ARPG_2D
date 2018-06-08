@@ -4,7 +4,7 @@
 [ext_resource path="res://Enviroments/Wall/Wall.tres" type="TileSet" id=2]
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=3]
 
-[node name="Level" type="Node2D" index="0"]
+[node name="Level" type="Node2D"]
 position = Vector2( 257, 254 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -57,3 +57,9 @@ sort_enabled = true
 [node name="Player" parent="Ground/YSort" index="0" instance=ExtResource( 3 )]
 position = Vector2( -8, -38 )
 
+[node name="debug_info" parent="Ground/YSort/Player" index="6"]
+editor/display_folded = false
+visible = true
+
+
+[editable path="Ground/YSort/Player"]
