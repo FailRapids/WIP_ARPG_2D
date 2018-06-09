@@ -9,6 +9,7 @@ onready var _AnimationPlayer = $"../..".get_node("AnimationPlayer")
 onready var _Tween = $"../..".get_node("Tween")
 onready var _BodyPivot = $"../..".get_node("Body")
 onready var _EnvCollision = $"../..".get_node("Env")
+onready var _Weapon =$"../..".get_node("Body/WeaponPivot/WeaponSpawn")
 
 var speed = 0 setget set_speed,get_speed
 var air_speed = 0 setget set_air_speed,get_air_speed

@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Characters/WeaponPivot.gd" type="Script" id=3]
-[ext_resource path="res://Characters/Player/States/Idle.gd" type="Script" id=4]
-[ext_resource path="res://Characters/Player/States/Move.gd" type="Script" id=5]
-[ext_resource path="res://Characters/Player/States/Bump.gd" type="Script" id=6]
-[ext_resource path="res://Characters/Player/States/Jump.gd" type="Script" id=7]
-[ext_resource path="res://Characters/Player/States/Attack.gd" type="Script" id=8]
+[ext_resource path="res://Characters/Player/WeaponSpawn.gd" type="Script" id=4]
+[ext_resource path="res://Characters/Player/States/Idle.gd" type="Script" id=5]
+[ext_resource path="res://Characters/Player/States/Move.gd" type="Script" id=6]
+[ext_resource path="res://Characters/Player/States/Bump.gd" type="Script" id=7]
+[ext_resource path="res://Characters/Player/States/Jump.gd" type="Script" id=8]
+[ext_resource path="res://Characters/Player/States/Attack.gd" type="Script" id=9]
 
 [node name="Player" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -26,6 +27,7 @@ script = ExtResource( 3 )
 
 [node name="WeaponSpawn" parent="Body/WeaponPivot" index="0"]
 position = Vector2( 7, 0 )
+script = ExtResource( 4 )
 
 [node name="CamRig" parent="." index="3"]
 editor/display_folded = false
@@ -36,35 +38,33 @@ current = true
 
 [node name="States" parent="." index="5"]
 pause_mode = 1
-editor/display_folded = false
 
 [node name="Idle" parent="States" index="0"]
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 
 [node name="Move" parent="States" index="1"]
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "script" ]
 DECCELERATION = 120
 
 [node name="Bump" parent="States" index="2"]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 _sections_unfolded = [ "script" ]
 BUMP_DISTANCE = 30
 BUMP_DURATION = 0.319
 MAX_BUMP_HEIGHT = 4
 
 [node name="Jump" parent="States" index="3"]
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 ACCELRATION = 35
 DECCELERATION = 60
 JUMP_DURATION = 0.75
 MAX_JUMP_HEIGHT = 16
 
 [node name="Attack" parent="States" index="4"]
-script = ExtResource( 8 )
-MAX_SPEED = 60
-ACCELRATION = 35
-DECCELERATION = 60
-STRENGTH = 5
+script = ExtResource( 9 )
+
+[node name="debug_info" parent="." index="6"]
+visible = true
 
 [connection signal="direction_changed" from="." to="Body/WeaponPivot" method="_on_direction_changed"]
